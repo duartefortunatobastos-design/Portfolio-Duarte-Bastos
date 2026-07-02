@@ -77,17 +77,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "J. Logan — Developer & Athlete" },
+      { title: "Duarte Bastos - Developer & Athlete" },
       {
         name: "description",
         content:
-          "Portfolio of J. Logan — full-stack developer and competitive sprinter. Building high-performance software with the discipline of the track.",
+          "Portfolio of Duarte Bastos — developer and athlete. Sport, programming, and projects built with discipline.",
       },
-      { property: "og:title", content: "J. Logan — Developer & Athlete" },
+      { property: "og:title", content: "Duarte Bastos - Developer & Athlete" },
       {
         property: "og:description",
         content:
-          "Full-stack developer by day, competitive sprinter by dawn. Selected work, story, and stats.",
+          "Developer and multi-sport athlete from Portugal. Portfolio, story, skills, and selected projects.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

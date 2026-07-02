@@ -3,15 +3,24 @@ import { createContext, useContext, useState, type ReactNode } from "react";
 export type Lang = "pt" | "en";
 
 type Dict = {
-  nav: { about: string; story: string; work: string; skills: string; sports: string; connect: string; menu: string; close: string };
+  nav: {
+    about: string;
+    story: string;
+    work: string;
+    skills: string;
+    sports: string;
+    connect: string;
+    menu: string;
+    close: string;
+  };
   hero: {
-    badge: string;
-    title1: string;
-    title2: string;
-    title3: string;
-    subtitle: string;
-    cta1: string;
-    cta2: string;
+    name: string;
+    tagline1: string;
+    tagline2: string;
+    desc1: string;
+    desc2: string;
+    ctaProjects: string;
+    ctaAbout: string;
     scroll: string;
   };
   about: {
@@ -20,7 +29,11 @@ type Dict = {
     title2: string;
     p1: string;
     p2: string;
-    stats: { pb: string; contrib: string; projects: string; years: string };
+    highlightsTitle: string;
+    highlights: string[];
+    location: { value: string; label: string };
+    valuesTitle: string;
+    values: string[];
   };
   story: {
     kicker: string;
@@ -33,22 +46,33 @@ type Dict = {
     title1: string;
     title2: string;
     intro: string;
-    items: { title: string; description: string; tech: string[] }[];
+    viewProject: string;
+    code: string;
+    items: {
+      title: string;
+      description: string;
+      tech: string[];
+      liveUrl: string;
+      codeUrl: string;
+    }[];
   };
   skills: {
-    kicker1: string;
-    kicker2: string;
+    kicker: string;
     title1: string;
     title2: string;
-    soft: string[];
+    technicalTitle: string;
+    otherTitle: string;
+    learningLabel: string;
+    languagesLabel: string;
     tech: string[];
+    learning: string[];
   };
   sports: {
     kicker: string;
     title1: string;
     title2: string;
     intro: string;
-    items: { title: string; year: string; body: string }[];
+    categories: { sport: string; highlights: string[] }[];
   };
   contact: {
     kicker: string;
@@ -61,180 +85,346 @@ type Dict = {
     send: string;
     sending: string;
     success: string;
+    fillAllFields: string;
+    invalidEmail: string;
+    linksLabel: string;
+    social: { github: string; instagram: string };
   };
-  footer: { rights: string; built: string };
+  footer: { name: string; rights: string; socialLabel: string };
   toggle: string;
 };
 
 const pt: Dict = {
-  nav: { about: "Sobre", story: "História", work: "Projetos", skills: "Skills", sports: "Esporte", connect: "Contato", menu: "Menu", close: "Fechar" },
+  nav: {
+    about: "Sobre",
+    story: "História",
+    work: "Projetos",
+    skills: "Competências",
+    sports: "Desporto",
+    connect: "Contactos",
+    menu: "Menu",
+    close: "Fechar",
+  },
   hero: {
-    badge: "Disponível para projetos",
-    title1: "CONSTRUINDO",
-    title2: "VELOCIDADE",
-    title3: "ENTREGANDO CÓDIGO",
-    subtitle:
-      "Desenvolvedor full-stack durante o dia, velocista competitivo ao amanhecer. Uno a alta performance do atletismo à arquitetura de software resiliente.",
-    cta1: "Explorar Minha Jornada",
-    cta2: "Ver Projetos",
-    scroll: "Role ↓",
+    name: "Duarte Bastos",
+    tagline1: "Desenvolvedor & Atleta",
+    tagline2: "A Disciplina Constrói o Sucesso",
+    desc1: "Desenvolvedor em formação, apaixonado por software, redes e cibersegurança.",
+    desc2: "Atleta multidesportivo — Taekwondo, futebol e atletismo com foco e resiliência.",
+    ctaProjects: "Ver Projetos",
+    ctaAbout: "Sobre Mim",
+    scroll: "Role",
   },
   about: {
     kicker: "Sobre Mim",
-    title1: "A mentalidade de um",
-    title2: "Atleta Dual",
-    p1: "Sou um jovem desenvolvedor e velocista competitivo. Minha crença é simples: a disciplina da pista influencia diretamente a qualidade do meu código. Otimizando um componente React ou raspando milésimos numa prova de 100m, o objetivo é o mesmo — eficiência máxima.",
-    p2: "Encaro cada projeto como uma temporada: construir fundamentos sólidos, medir tudo, iterar com honestidade. Sou movido por arquitetura limpa, interfaces rápidas e records pessoais.",
-    stats: { pb: "Recorde 100m", contrib: "Contribuições no Github", projects: "Projetos Entregues", years: "Anos na Pista" },
+    title1: "Quem",
+    title2: "sou eu",
+    p1: "O meu nome é Duarte Bastos, tenho 18 anos e conclui o 12º ano no Curso Profissional de Técnico de Gestão e Programação de Sistemas Informáticos. Desde muito cedo que o desporto faz parte da minha vida. Comecei aos 4 anos no Taekwondo, uma arte marcial originária da Coreia do Sul, onde alcancei resultados de destaque, tendo-me consagrado 5 vezes campeão distrital e 2 vezes vice-campeão ibérico. Sou também detentor do 1.º Dan de Taekwondo. Aos 9 anos iniciei o meu percurso no futebol, modalidade que continuo a praticar até hoje com dedicação e espírito competitivo.",
+    p2: "Para além disso, pratico também atletismo, participando em várias provas onde já conquistei diversos primeiros lugares. Uma das conquistas que mais me orgulha foi a vitória no Troféu de Atletismo do Seixal. Paralelamente ao desporto, tenho uma grande paixão pela área da tecnologia e da programação. Interesso-me por áreas como arquitetura de computadores, redes, cibersegurança e desenvolvimento de software. Ao longo do tempo, adquiri conhecimentos em várias linguagens de programação, incluindo PHP, JavaScript, C++, C#, Python, bem como HTML e CSS. Considero-me uma pessoa disciplinada, focada e orientada para objetivos, procurando constantemente evoluir tanto a nível pessoal como profissional. O meu percurso reflete um equilíbrio entre o desporto e a tecnologia, combinando resiliência, dedicação e uma forte vontade de crescer.",
+    highlightsTitle: "Destaques",
+    highlights: ["18 anos", "Programador", "Atleta"],
+    location: { value: "PT", label: "Baseado em Portugal" },
+    valuesTitle: "Valores",
+    values: ["Disciplina", "Consistência", "Evolução"],
   },
   story: {
-    kicker: "Minha História",
-    title1: "Uma linha do tempo forjada por",
-    title2: "código e cadência",
+    kicker: "A Minha História",
+    title1: "A minha",
+    title2: "jornada",
     items: [
-      { year: "2016", title: "Primeira Linha de Código", body: "Escrevi minha primeira página HTML aos 12 anos. Me apaixonei pela ideia de que a lógica podia produzir algo visível." },
-      { year: "2018", title: "Estreia no Atletismo", body: "Entrei na equipe de velocidade da escola. Aprendi que a evolução é medida em centésimos — e milhares de repetições." },
-      { year: "2020", title: "Campeão Regional de Velocidade", body: "1º lugar nos 100m no campeonato regional. Descobri o paralelo entre preparar uma prova e entregar software." },
-      { year: "2022", title: "Primeiro Projeto Full-Stack em Produção", body: "Lancei uma plataforma em PHP + JS usada pelo meu clube de atletismo. Usuários reais, feedback real, bugs reais." },
-      { year: "2024", title: "Construindo na Interseção", body: "Hoje foco em apps web de alta performance para o mundo do esporte e bem-estar. Duas identidades, uma obsessão: velocidade." },
+      {
+        year: "Dos 4 anos aos 9 anos",
+        title: "Taekwondo",
+        body: "Iniciei no Taekwondo — onde aprendi disciplina e a verdadeira competição, onde obtive os meus primeiros resultados a nível distrital e ibérico. Uma base que moldou a minha mentalidade.",
+      },
+      {
+        year: "Dos 9 anos ao 18 anos",
+        title: "Futebol",
+        body: "Comecei no futebol no Atético Clube de Arrentela, onde aprendi o espírito de equipa e vontade de competir ao longo das épocas. Uma paixão enorme por este clube, que foi a minha casa e que levo comigo até hoje.",
+      },
+      {
+        year: "TGPSSI",
+        title: "Curso Profissional de Técnico de Gestão e Programação de Sistemas Informáticos",
+        body: "Entrei no 10º ano no curso, com o objetivo de aprender uma área que sempre gostei — a área da informática, envolvendo tudo sobre este mundo e a área da programação. Aprendi PHP, JavaScript, Python, HTML, CSS e as bases da informática.",
+      },
+      {
+        year: "Presente",
+        title: "Projetos",
+        body: "Desenvolvo projetos reais, sejam pessoais ou para empresas. Já entreguei 2 projetos para clientes e empresas, incluindo a minha PAP e este portfólio.",
+      },
     ],
   },
   projects: {
     kicker: "Projetos",
-    title1: "Trabalhos",
-    title2: "Selecionados",
-    intro: "Uma amostra do que construí recentemente — de dashboards de performance a plataformas de e-commerce.",
+    title1: "O que",
+    title2: "desenvolvi",
+    intro:
+      "Projetos reais — da PAP a soluções para clientes — com foco em funcionalidade, design e código limpo.",
+    viewProject: "Ver Projeto",
+    code: "Código",
     items: [
       {
-        title: "Apex Athlete Dashboard",
-        description: "Plataforma de telemetria para acompanhar métricas de sprint, tempos parciais e evolução a longo prazo.",
-        tech: ["Next.js", "TypeScript", "PostgreSQL", "Recharts"],
+        title: "Site PAP",
+        description:
+          "Projeto de Aptidão Profissional do curso TGPSI. Website completo com gestão de conteúdos, base de dados e interface responsiva.",
+        tech: ["PHP", "JavaScript", "HTML", "CSS", "MySQL"],
+        liveUrl: "#",
+        codeUrl: "https://github.com/duartefortunatobastos-design/PAP-LONE-WOLF---DUARTE-BASTOS",
       },
       {
-        title: "Volt Commerce",
-        description: "Experiência de e-commerce de alta conversão para uma boutique especializada em produtos de atletismo.",
-        tech: ["PHP", "JavaScript", "MySQL", "Tailwind"],
+        title: "Portfólio Duarte Bastos",
+        description:
+          "Portfólio pessoal, com secções de sobre mim, a minha história, projetos, skills e contacto, em PT e EN.",
+        tech: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+        liveUrl: "#",
+        codeUrl: "#",
       },
       {
-        title: "Pulse Chat",
-        description: "App de mensagens em tempo real com indicadores de digitação, presença e envio de arquivos.",
-        tech: ["React", "Node.js", "WebSockets"],
+        title: "Projeto para ASAPOL",
+        description:
+          "Website desenvolvido para Sindicato da Polícia de Segurança Pública, com foco em presença online, usabilidade, painel para os sócios e sistema de candidatura.",
+        tech: ["PHP", "JavaScript", "HTML", "CSS", "MySQL"],
+        liveUrl: "https://duartefortunatobastos-design.github.io/SITE-ASAPOL--Duarte-Bastos/",
+        codeUrl: "https://github.com/duartefortunatobastos-design/SITE-ASAPOL--Duarte-Bastos",
       },
     ],
   },
   skills: {
-    kicker1: "Habilidades Técnicas",
-    kicker2: "Soft Skills",
-    title1: "Stack & Ferramentas",
-    title2: "Mentalidade",
-    soft: ["Disciplina", "Foco", "Trabalho em Equipe", "Resiliência", "Comunicação", "Adaptabilidade"],
-    tech: ["HTML & CSS", "JavaScript / TypeScript", "React / Next.js", "PHP", "Node.js", "SQL / PostgreSQL"],
+    kicker: "Competências",
+    title1: "Capacidade",
+    title2: "técnica",
+    technicalTitle: "Técnicas",
+    otherTitle: "Outras",
+    learningLabel: "Gostaria de aprender:",
+    languagesLabel: "Linguagens",
+    tech: ["PHP", "JavaScript", "C++", "C#", "Python", "HTML & CSS"],
+    learning: ["Redes", "Cibersegurança"],
   },
   sports: {
-    kicker: "Esporte & Conquistas",
-    title1: "A pista formou o",
-    title2: "engenheiro",
-    intro: "O sprint me ensinou que milésimos importam — numa prova e num render loop. Aqui estão algumas marcas das quais me orgulho.",
-    items: [
-      { title: "Campeão Regional 100m", year: "2020", body: "Ouro no campeonato regional Sub-18 com recorde pessoal de 10,98s." },
-      { title: "Finalista Nacional — Revezamento 4x100m", year: "2021", body: "Ancorei a equipe até um 5º lugar no nacional." },
-      { title: "Recorde Pessoal — 100m", year: "2023", body: "10,42s com vento legal. Resultado de dois anos focados em biomecânica e força." },
-      { title: "Marca de Força", year: "2024", body: "Levantamento terra com trap bar em 2,2× o peso corporal. Base da pré-temporada." },
+    kicker: "Desporto & Conquistas",
+    title1: "O meu",
+    title2: "diferencial",
+    intro:
+      "Mais do que código — anos de desporto a moldar disciplina, foco e vontade de competir. O que me distingue de outros perfis técnicos.",
+    categories: [
+      {
+        sport: "Taekwondo",
+        highlights: [
+          "5x campeão distrital",
+          "2x vice-campeão ibérico",
+          "1º Dan",
+        ],
+      },
+      {
+        sport: "Futebol",
+        highlights: [
+          "Campeão Distrital 2018/2019",
+          "Campeão Sesimbra Summer Cup 2018",
+          "Campeão Moçarria Cup 2023/2024",
+        ],
+      },
+      {
+        sport: "Atletismo",
+        highlights: [
+          "Campeão do Trofeu de Atletismo do Seixal",
+          "+10x - 1º lugar em provas no concelho",
+          "+10x - 1º lugar em Corta matos",
+        ],
+      },
     ],
   },
   contact: {
-    kicker: "Contato",
-    title1: "Vamos criar algo",
-    title2: "rápido.",
-    intro: "Disponível para desenvolvimento freelance, colaborações em sports-tech ou uma boa conversa sobre treino e código.",
-    name: "Seu Nome",
-    email: "Endereço de Email",
-    message: "Conte sobre seu projeto...",
+    kicker: "Contactos",
+    title1: "Entra em",
+    title2: "contacto",
+    intro:
+      "Queres falar sobre um projeto, colaboração ou oportunidade? Preenche o formulário ou contacta-me pelas redes.",
+    name: "O teu nome",
+    email: "O teu e-mail",
+    message: "A tua mensagem",
     send: "Enviar Mensagem",
-    sending: "Enviando...",
-    success: "Mensagem enviada — retorno em breve.",
+    sending: "A enviar...",
+    success: "Mensagem enviada — respondo em breve.",
+    fillAllFields: "Preenche todos os campos antes de enviar.",
+    invalidEmail: "Introduz um email válido.",
+    linksLabel: "Links",
+    social: {
+      github: "https://github.com/duartefortunatobastos-design",
+      instagram: "https://www.instagram.com/13.bastos/",
+    },
   },
-  footer: { rights: "J. Logan — Desenvolvedor & Atleta", built: "Feito com velocidade & precisão" },
+  footer: {
+    name: "Duarte Bastos",
+    rights: "Todos os direitos reservados.",
+    socialLabel: "Redes sociais",
+  },
   toggle: "EN",
 };
 
 const en: Dict = {
-  nav: { about: "About", story: "Story", work: "Work", skills: "Skills", sports: "Sports", connect: "Connect", menu: "Menu", close: "Close" },
+  nav: {
+    about: "About",
+    story: "Story",
+    work: "Work",
+    skills: "Skills",
+    sports: "Sports",
+    connect: "Connect",
+    menu: "Menu",
+    close: "Close",
+  },
   hero: {
-    badge: "Available for projects",
-    title1: "BUILDING",
-    title2: "SPEED",
-    title3: "SHIPPING CODE",
-    subtitle:
-      "Full-stack developer by day, competitive sprinter by dawn. I bridge the gap between high-performance athletics and resilient software architecture.",
-    cta1: "Explore My Journey",
-    cta2: "View Projects",
-    scroll: "Scroll ↓",
+    name: "Duarte Bastos",
+    tagline1: "Developer & Athlete",
+    tagline2: "Discipline Builds Success",
+    desc1: "Developer in training with a passion for software, networking, and cybersecurity.",
+    desc2: "Multi-sport athlete — taekwondo, football, and athletics with focus and resilience.",
+    ctaProjects: "View Projects",
+    ctaAbout: "About Me",
+    scroll: "Scroll",
   },
   about: {
     kicker: "About Me",
-    title1: "The Mindset of a",
-    title2: "Dual Athlete",
-    p1: "I'm a young developer and competitive sprinter. My belief is simple: the discipline of the track directly informs the quality of my code. Whether I'm optimizing a React component or shaving milliseconds off a 100m sprint, the objective is the same — peak efficiency.",
-    p2: "I approach every project like a season: build strong fundamentals, measure everything, iterate honestly. I'm driven by clean architecture, fast interfaces, and personal bests.",
-    stats: { pb: "100m Personal Best", contrib: "Github Contributions", projects: "Projects Shipped", years: "On the Track" },
+    title1: "Who",
+    title2: "I am",
+    p1: "My name is Duarte Bastos, I'm 18 years old and I'm completing the 12th grade in a Professional Course in IT Systems Management and Programming. Sport has been part of my life from a very young age. I started Taekwondo at 4 — a martial art from South Korea — where I achieved standout results, becoming district champion 5 times and Iberian vice-champion twice. I also hold a 1st Dan in Taekwondo. At 9, I began football, a sport I still practice today with dedication and a competitive spirit.",
+    p2: "I also compete in athletics, taking part in various events where I've earned several first-place finishes. One achievement I'm especially proud of is winning the Seixal Athletics Trophy. Alongside sport, I have a deep passion for technology and programming. I'm interested in computer architecture, networking, cybersecurity, and software development. Over time, I've gained skills in PHP, JavaScript, C++, C#, Python, HTML, and CSS. I consider myself disciplined, focused, and goal-oriented, constantly striving to grow both personally and professionally. My path reflects a balance between sport and technology — resilience, dedication, and a strong drive to improve.",
+    highlightsTitle: "Highlights",
+    highlights: ["18 years old", "Developer", "Athlete"],
+    location: { value: "PT", label: "Based in Portugal" },
+    valuesTitle: "Values",
+    values: ["Discipline", "Consistency", "Growth"],
   },
   story: {
     kicker: "My Story",
-    title1: "A timeline forged by",
-    title2: "code and cadence",
+    title1: "My",
+    title2: "journey",
     items: [
-      { year: "2016", title: "First Line of Code", body: "Wrote my first HTML page at 12. Fell in love with the idea that logic could produce something visible." },
-      { year: "2018", title: "Track & Field Debut", body: "Joined my school's sprint team. Learned that improvement is measured in hundredths of a second — and thousands of reps." },
-      { year: "2020", title: "Regional Sprint Champion", body: "Placed 1st in the 100m at the regional championship. Discovered the parallel between race prep and shipping software." },
-      { year: "2022", title: "First Full-Stack Project Shipped", body: "Launched a PHP + JS platform used by my athletics club. Real users, real feedback, real bugs." },
-      { year: "2024", title: "Building at the Intersection", body: "Now focused on high-performance web apps for the sports & wellness space. Two identities, one obsession: speed." },
+      {
+        year: "From age 4 to 9",
+        title: "Taekwondo",
+        body: "I began Taekwondo — where I learned discipline and true competition, and earned my first district and Iberian results. A foundation that shaped my mindset.",
+      },
+      {
+        year: "From age 9 to 18",
+        title: "Football",
+        body: "I started football at Atlético Clube de Arrentela, where I learned team spirit and the drive to compete season after season. A deep passion for this club — my home — that I still carry with me today.",
+      },
+      {
+        year: "TGPSSI",
+        title: "Professional Course in IT Systems Management and Programming",
+        body: "I entered the course in 10th grade with the goal of learning a field I've always loved — IT, covering everything about this world and programming. I learned PHP, JavaScript, Python, HTML, CSS, and the fundamentals of computing.",
+      },
+      {
+        year: "Present",
+        title: "Projects",
+        body: "I build real projects — personal or for businesses. I've already delivered 2 projects for clients and companies, including my PAP and this portfolio.",
+      },
     ],
   },
   projects: {
     kicker: "Projects",
-    title1: "Selected",
-    title2: "Works",
-    intro: "A slice of things I've built recently — from performance dashboards to commerce platforms.",
+    title1: "What I've",
+    title2: "built",
+    intro:
+      "Real projects — from my PAP to client work — focused on functionality, design, and clean code.",
+    viewProject: "View Project",
+    code: "Code",
     items: [
-      { title: "Apex Athlete Dashboard", description: "Custom telemetry platform for tracking sprint metrics, split times, and long-term progression trends.", tech: ["Next.js", "TypeScript", "PostgreSQL", "Recharts"] },
-      { title: "Volt Commerce", description: "High-conversion e-commerce experience for a specialized track & field gear boutique.", tech: ["PHP", "JavaScript", "MySQL", "Tailwind"] },
-      { title: "Pulse Chat", description: "Real-time team messaging app with typing indicators, presence, and file sharing.", tech: ["React", "Node.js", "WebSockets"] },
+      {
+        title: "PAP Website",
+        description:
+          "Professional Aptitude Project for my TGPSI course. Full website with content management, database, and responsive UI.",
+        tech: ["PHP", "JavaScript", "HTML", "CSS", "MySQL"],
+        liveUrl: "#",
+        codeUrl: "https://github.com/duartefortunatobastos-design/PAP-LONE-WOLF---DUARTE-BASTOS",
+      },
+      {
+        title: "Duarte Bastos Portfolio",
+        description:
+          "Personal portfolio with about me, my story, projects, skills, and contact sections, in PT and EN.",
+        tech: ["React", "TypeScript", "Tailwind CSS", "Vite"],
+        liveUrl: "#",
+        codeUrl: "#",
+      },
+      {
+        title: "ASAPOL Project",
+        description:
+          "Website built for the Public Security Police union, focused on online presence, usability, a member area, and an application system.",
+        tech: ["PHP", "JavaScript", "HTML", "CSS", "MySQL"],
+        liveUrl: "https://duartefortunatobastos-design.github.io/SITE-ASAPOL--Duarte-Bastos/",
+        codeUrl: "https://github.com/duartefortunatobastos-design/SITE-ASAPOL--Duarte-Bastos",
+      },
     ],
   },
   skills: {
-    kicker1: "Technical Skills",
-    kicker2: "Soft Skills",
-    title1: "Stack & Tooling",
-    title2: "Mindset",
-    soft: ["Discipline", "Focus", "Teamwork", "Resilience", "Communication", "Adaptability"],
-    tech: ["HTML & CSS", "JavaScript / TypeScript", "React / Next.js", "PHP", "Node.js", "SQL / PostgreSQL"],
+    kicker: "Skills",
+    title1: "Technical",
+    title2: "ability",
+    technicalTitle: "Technical",
+    otherTitle: "Other",
+    learningLabel: "I'd like to learn:",
+    languagesLabel: "Languages",
+    tech: ["PHP", "JavaScript", "C++", "C#", "Python", "HTML & CSS"],
+    learning: ["Networking", "Cybersecurity"],
   },
   sports: {
     kicker: "Sports & Achievements",
-    title1: "The track built the",
-    title2: "engineer",
-    intro: "Sprinting taught me that milliseconds matter — in a race, and in a render loop. Here are a few marks I'm proud of.",
-    items: [
-      { title: "Regional 100m Champion", year: "2020", body: "Gold medal in the U18 regional championship with a 10.98s personal best." },
-      { title: "National Finalist — 4x100m Relay", year: "2021", body: "Anchored the relay team to a 5th place national finish." },
-      { title: "Personal Best — 100m", year: "2023", body: "10.42s wind-legal. Result of two years of biomechanics and strength focus." },
-      { title: "Strength Milestone", year: "2024", body: "Trap bar deadlift at 2.2× body weight. Off-season strength foundation." },
+    title1: "My",
+    title2: "edge",
+    intro:
+      "More than code — years of sport shaping discipline, focus, and a drive to compete. What sets me apart from other technical profiles.",
+    categories: [
+      {
+        sport: "Taekwondo",
+        highlights: [
+          "5x district champion",
+          "2x Iberian vice-champion",
+          "1st Dan",
+        ],
+      },
+      {
+        sport: "Football",
+        highlights: [
+          "District Champion 2018/2019",
+          "Sesimbra Summer Cup Champion 2018",
+          "Moçarria Cup Champion 2023/2024",
+        ],
+      },
+      {
+        sport: "Athletics",
+        highlights: [
+          "Seixal Athletics Trophy Champion",
+          "+10x - 1st-place finishes in municipal events",
+          "+10x - 1st-place finishes in Corta Matos",
+        ],
+      },
     ],
   },
   contact: {
     kicker: "Contact",
-    title1: "Let's create something",
-    title2: "fast.",
-    intro: "Available for freelance development, sports-tech collaborations, or just a good conversation about training and code.",
-    name: "Your Name",
-    email: "Email Address",
-    message: "Tell me about your project...",
+    title1: "Get in",
+    title2: "touch",
+    intro:
+      "Want to talk about a project, collaboration, or opportunity? Fill out the form or reach me on social media.",
+    name: "Your name",
+    email: "Your email",
+    message: "Your message",
     send: "Send Message",
     sending: "Sending...",
     success: "Message sent — I'll get back to you shortly.",
+    fillAllFields: "Please fill in all fields before sending.",
+    invalidEmail: "Please enter a valid email address.",
+    linksLabel: "Links",
+    social: {
+      github: "https://github.com/duartefortunatobastos-design",
+      instagram: "https://www.instagram.com/13.bastos/",
+    },
   },
-  footer: { rights: "J. Logan — Developer & Athlete", built: "Built with speed & precision" },
+  footer: {
+    name: "Duarte Bastos",
+    rights: "All rights reserved.",
+    socialLabel: "Social media",
+  },
   toggle: "PT",
 };
 
