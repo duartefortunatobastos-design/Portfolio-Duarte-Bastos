@@ -7,9 +7,9 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
-// Project site URL: /Portfolio-Duarte-Bastos/ (gh-pages) or /Portfolio-Duarte-Bastos/docs/ (main/docs).
+// GitHub project site base path.
 const githubPagesBase =
-  process.env.GITHUB_PAGES_BASE ?? "/Portfolio-Duarte-Bastos/docs/";
+  process.env.GITHUB_PAGES_BASE ?? "/Portfolio-Duarte-Bastos/";
 
 export default defineConfig({
   vite: {
