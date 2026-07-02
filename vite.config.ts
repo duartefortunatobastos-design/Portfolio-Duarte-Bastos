@@ -6,15 +6,31 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+const isGitHubPages = process.env.GITHUB_PAGES === "true";
+const githubPagesBase = "/Portfolio-Duarte-Bastos/";
+
 export default defineConfig({
   vite: {
+    base: isGitHubPages ? githubPagesBase : "/",
     server: {
       open: true,
     },
   },
+  // GitHub Pages needs a static prerender build; Nitro's Cloudflare SSR output breaks prerender.
+  nitro: isGitHubPages ? false : undefined,
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    ...(isGitHubPages
+      ? {
+          prerender: {
+            enabled: true,
+            crawlLinks: true,
+            autoStaticPathsDiscovery: true,
+            failOnError: true,
+          },
+        }
+      : {}),
   },
 });
