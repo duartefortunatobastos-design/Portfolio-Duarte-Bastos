@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -31,12 +33,13 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
 
-      - name: Build static site for GitHub Pages
+      - name: Build static site for docs/
         env:
           GITHUB_PAGES: "true"
+          GITHUB_PAGES_BASE: "/Portfolio-Duarte-Bastos/docs/"
         run: npm run build
 
-      - name: Prepare GitHub Pages output
+      - name: Prepare docs output
         run: |
           if [ ! -f dist/client/index.html ]; then
             echo "Expected dist/client/index.html was not generated."
@@ -47,12 +50,37 @@ jobs:
           cp public/favicon.ico dist/client/favicon.ico
           touch dist/client/.nojekyll
 
-      - name: Deploy built site to docs/ on main
+      - name: Publish docs folder to main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf docs
+          cp -R dist/client docs
+          git add docs
+          if git diff --staged --quiet; then
+            echo "No docs changes to deploy."
+          else
+            git commit -m "Deploy GitHub Pages site to docs/ [skip ci]"
+            git push origin HEAD:main
+          fi
+
+      - name: Build static site for gh-pages branch
+        env:
+          GITHUB_PAGES: "true"
+          GITHUB_PAGES_BASE: "/Portfolio-Duarte-Bastos/"
+        run: npm run build
+
+      - name: Prepare gh-pages output
+        run: |
+          cp dist/client/index.html dist/client/404.html
+          cp public/favicon.ico dist/client/favicon.ico
+          touch dist/client/.nojekyll
+
+      - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_branch: main
+          publish_branch: gh-pages
           publish_dir: dist/client
-          destination_dir: docs
-          keep_files: true
-          commit_message: "Deploy GitHub Pages site to docs/ [skip ci]"
+          force_orphan: true
+          commit_message: "Deploy GitHub Pages site [skip ci]"
