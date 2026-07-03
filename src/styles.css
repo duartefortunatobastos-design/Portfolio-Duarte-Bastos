@@ -357,6 +357,14 @@
   }
 }
 
+@media (scripting: none) {
+  .opacity-0.translate-y-6,
+  .scale-x-0.opacity-0 {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;

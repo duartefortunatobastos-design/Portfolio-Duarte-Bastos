@@ -1,4 +1,11 @@
-import { type CSSProperties, type ElementType, type ReactNode, useEffect, useRef, useState } from "react";
+import {
+  type CSSProperties,
+  type ElementType,
+  type ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { cn } from "@/lib/utils";
 
 export type FadeAnimation = "animate-fade-up" | "animate-fade-in" | "animate-scale-x-in";
@@ -17,6 +24,12 @@ const hiddenClass: Record<FadeAnimation, string> = {
   "animate-scale-x-in": "scale-x-0 opacity-0",
 };
 
+function isInViewport(node: Element, threshold = 0.15) {
+  const rect = node.getBoundingClientRect();
+  const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+  return visibleHeight >= rect.height * threshold || rect.top < window.innerHeight * 0.92;
+}
+
 /** Scroll-triggered fade — same pattern as the ASAPOL site. */
 export function FadeIn({
   children,
@@ -32,18 +45,38 @@ export function FadeIn({
     const node = ref.current;
     if (!node) return;
 
+    let done = false;
+    const reveal = () => {
+      if (done) return;
+      done = true;
+      setVisible(true);
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setVisible(true);
+          reveal();
           observer.disconnect();
         }
       },
-      { threshold: 0.15 },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
     );
 
     observer.observe(node);
-    return () => observer.disconnect();
+
+    // Prerendered GitHub Pages: hero items are already in view before IO fires.
+    const checkNow = () => {
+      if (isInViewport(node)) reveal();
+    };
+
+    checkNow();
+    requestAnimationFrame(checkNow);
+    window.addEventListener("load", checkNow, { once: true });
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("load", checkNow);
+    };
   }, []);
 
   const style: CSSProperties | undefined = visible ? { animationDelay: `${delay}ms` } : undefined;
