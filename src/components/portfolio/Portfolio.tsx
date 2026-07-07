@@ -17,6 +17,7 @@ import { TechLanguageIcon } from "./TechIcons";
 import { FadeIn, FadeInItem } from "./FadeIn";
 import { SectionHeader } from "./SectionHeader";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
+import { cn } from "@/lib/utils";
 import portrait from "@/assets/portrait.png";
 import logo from "@/assets/logo.png";
 import heroBg from "@/assets/hero-bg.jpg";
@@ -265,7 +266,7 @@ function About() {
   return (
     <section
       id="about"
-      className={`mx-auto grid max-w-7xl items-start gap-10 sm:gap-12 md:grid-cols-2 md:items-center md:gap-14 lg:gap-16 ${SECTION_Y} ${SECTION_X}`}
+      className={`mx-auto grid max-w-7xl items-start gap-10 sm:gap-12 md:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] md:items-center md:gap-14 lg:gap-20 ${SECTION_Y} ${SECTION_X}`}
     >
       <FadeIn className="mx-auto w-full max-w-md md:mx-0 md:max-w-none md:self-center">
         <div className="group relative overflow-hidden rounded-2xl border border-white/5">
@@ -280,7 +281,7 @@ function About() {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-bg/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </div>
       </FadeIn>
-      <div className="min-w-0 space-y-4 sm:space-y-5">
+      <div className="min-w-0 space-y-6 sm:space-y-7">
         <SectionHeader
           kicker={t.about.kicker}
           title={
@@ -288,14 +289,30 @@ function About() {
               {t.about.title1} <span className="text-brand-primary">{t.about.title2}</span>
             </>
           }
-          className="!mb-4 sm:!mb-5"
+          className="!mb-0"
         />
-        <div className="grid gap-x-6 gap-y-2.5 text-base leading-snug text-white/60 text-pretty sm:text-[1.05rem] sm:leading-relaxed md:grid-cols-2 md:gap-x-8 lg:gap-x-10">
-          {t.about.paragraphs.map((paragraph, i) => (
-            <FadeIn key={i} delay={80 + i * 80}>
-              <p>{paragraph}</p>
-            </FadeIn>
-          ))}
+        <div className="relative md:pl-7">
+          <div
+            className="absolute left-0 top-1 hidden h-[calc(100%-0.5rem)] w-px bg-gradient-to-b from-brand-primary/60 via-brand-accent/25 to-transparent md:block"
+            aria-hidden="true"
+          />
+          <div className="space-y-5 sm:space-y-6">
+            {t.about.paragraphs.map((paragraph, i) => (
+              <FadeIn key={i} delay={80 + i * 80}>
+                <p
+                  className={cn(
+                    "text-pretty",
+                    i === 0
+                      ? "text-[1.02rem] font-medium leading-relaxed text-white/80 sm:text-[1.08rem]"
+                      : "text-[0.98rem] leading-[1.85] text-white/58 sm:text-base",
+                    i === t.about.paragraphs.length - 1 && "text-white/68",
+                  )}
+                >
+                  {paragraph}
+                </p>
+              </FadeIn>
+            ))}
+          </div>
         </div>
 
         <FadeIn delay={240}>
