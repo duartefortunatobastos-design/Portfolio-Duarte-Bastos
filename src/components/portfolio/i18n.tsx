@@ -142,11 +142,11 @@ const pt: Dict = {
       {
         year: "Dos 9 anos ao 18 anos",
         title: "Futebol",
-        body: "Comecei no futebol no Atético Clube de Arrentela, onde aprendi o espírito de equipa e vontade de competir ao longo das épocas. Uma paixão enorme por este clube, que foi a minha casa e que levo comigo até hoje.",
+        body: "Iniciei no Atético Clube de Arrentela, onde aprendi o espírito de equipa e vontade de competir ao longo das épocas. Uma paixão enorme por este clube, que foi a minha casa e que levo comigo até hoje.",
       },
       {
         year: "TGPSSI",
-        title: "Curso Profissional de Técnico de Gestão e Programação de Sistemas Informáticos",
+        title: "Técnico de Gestão e Programação de Sistemas Informáticos",
         body: "Entrei no 10º ano no curso, com o objetivo de aprender uma área que sempre gostei — a área da informática, envolvendo tudo sobre este mundo e a área da programação. Aprendi PHP, JavaScript, Python, HTML, CSS e as bases da informática.",
       },
       {

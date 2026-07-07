@@ -45,7 +45,11 @@ jobs:
             exit 1
           fi
           cp dist/client/index.html dist/client/404.html
-          cp public/favicon.ico dist/client/favicon.ico
+          cp public/favicon.png dist/client/favicon.png
+          cp public/favicon-16.png dist/client/favicon-16.png
+          cp public/favicon-48.png dist/client/favicon-48.png
+          cp public/apple-touch-icon.png dist/client/apple-touch-icon.png
+          cp public/logo-db.png dist/client/logo-db.png
           touch dist/client/.nojekyll
 
       - name: Deploy to gh-pages branch

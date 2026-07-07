@@ -77,13 +77,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Duarte Bastos - Developer & Athlete" },
+      { title: "Duarte Bastos - Desenvolvedor & Atleta" },
       {
         name: "description",
         content:
-          "Portfolio of Duarte Bastos — developer and athlete. Sport, programming, and projects built with discipline.",
+          "Portfólio de Duarte Bastos — Desenvolvedor & Atleta. Projetos, competências, desporto e contacto.",
       },
-      { property: "og:title", content: "Duarte Bastos - Developer & Athlete" },
+      { property: "og:title", content: "Duarte Bastos - Desenvolvedor & Atleta" },
       {
         property: "og:description",
         content:
@@ -97,7 +97,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.ico`, type: "image/x-icon" },
+      { rel: "icon", href: `${import.meta.env.BASE_URL}favicon.png?v=3`, type: "image/png", sizes: "32x32" },
+      { rel: "icon", href: `${import.meta.env.BASE_URL}favicon-16.png?v=3`, type: "image/png", sizes: "16x16" },
+      { rel: "icon", href: `${import.meta.env.BASE_URL}favicon-48.png?v=3`, type: "image/png", sizes: "48x48" },
+      { rel: "apple-touch-icon", href: `${import.meta.env.BASE_URL}apple-touch-icon.png?v=3` },
     ],
   }),
   shellComponent: RootShell,
