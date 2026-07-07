@@ -265,9 +265,9 @@ function About() {
   return (
     <section
       id="about"
-      className={`mx-auto grid max-w-7xl items-start gap-10 sm:gap-12 md:grid-cols-2 md:gap-14 lg:gap-16 ${SECTION_Y} ${SECTION_X}`}
+      className={`mx-auto grid max-w-7xl items-start gap-10 sm:gap-12 md:grid-cols-2 md:items-center md:gap-14 lg:gap-16 ${SECTION_Y} ${SECTION_X}`}
     >
-      <FadeIn className="mx-auto w-full max-w-md md:max-w-none lg:sticky lg:top-28">
+      <FadeIn className="mx-auto w-full max-w-md md:mx-0 md:max-w-none md:self-center">
         <div className="group relative overflow-hidden rounded-2xl border border-white/5">
           <img
             src={portrait}
@@ -280,7 +280,7 @@ function About() {
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-brand-bg/40 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
         </div>
       </FadeIn>
-      <div className="min-w-0 space-y-6 sm:space-y-8">
+      <div className="min-w-0 space-y-4 sm:space-y-5">
         <SectionHeader
           kicker={t.about.kicker}
           title={
@@ -288,9 +288,9 @@ function About() {
               {t.about.title1} <span className="text-brand-primary">{t.about.title2}</span>
             </>
           }
-          className="!mb-6"
+          className="!mb-4 sm:!mb-5"
         />
-        <div className="space-y-4 text-base leading-relaxed text-white/60 text-pretty sm:text-lg">
+        <div className="grid gap-x-6 gap-y-2.5 text-base leading-snug text-white/60 text-pretty sm:text-[1.05rem] sm:leading-relaxed md:grid-cols-2 md:gap-x-8 lg:gap-x-10">
           {t.about.paragraphs.map((paragraph, i) => (
             <FadeIn key={i} delay={80 + i * 80}>
               <p>{paragraph}</p>
@@ -299,14 +299,14 @@ function About() {
         </div>
 
         <FadeIn delay={240}>
-          <div className="space-y-4 pt-2">
+          <div className="space-y-3 pt-1">
             <p className="text-center text-[10px] font-bold uppercase tracking-[0.3em] text-white/40">
               {t.about.highlightsTitle}
             </p>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
               {t.about.highlights.map((item, i) => (
                 <FadeInItem key={item} index={i} baseDelay={0} step={70}>
-                  <div className="glass-card card-interactive flex min-h-24 flex-col items-center justify-center rounded-xl border border-white/5 px-3 py-4 text-center">
+                  <div className="glass-card card-interactive flex min-h-20 flex-col items-center justify-center rounded-xl border border-white/5 px-3 py-3 text-center">
                     <span className="font-display text-sm font-bold text-white md:text-base">
                       {item}
                     </span>
@@ -314,7 +314,7 @@ function About() {
                 </FadeInItem>
               ))}
               <FadeInItem index={t.about.highlights.length} baseDelay={0} step={70}>
-                <div className="glass-card card-interactive flex min-h-24 flex-col items-center justify-center rounded-xl border border-brand-accent/20 bg-brand-accent/5 px-3 py-4 text-center">
+                <div className="glass-card card-interactive flex min-h-20 flex-col items-center justify-center rounded-xl border border-brand-accent/20 bg-brand-accent/5 px-3 py-3 text-center">
                   <div className="font-display text-xl font-bold text-brand-accent md:text-2xl">
                     {t.about.location.value}
                   </div>
@@ -328,7 +328,7 @@ function About() {
         </FadeIn>
 
         <FadeIn delay={320}>
-          <div className="space-y-4">
+          <div className="space-y-3">
             <p className="text-center text-[10px] font-bold uppercase tracking-[0.3em] text-brand-accent/70">
               {t.about.valuesTitle}
             </p>
