@@ -329,7 +329,7 @@ function About() {
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-3">
               {t.about.highlights.map((item, i) => (
                 <FadeInItem key={item} index={i} baseDelay={0} step={70}>
-                  <div className="glass-card card-interactive flex min-h-[4.5rem] flex-col items-center justify-center rounded-xl border border-white/5 px-3 py-3 text-center">
+                  <div className="glass-card card-interactive flex h-24 flex-col items-center justify-center rounded-xl border border-white/5 px-3 py-3 text-center sm:h-[6.25rem]">
                     <span className="font-display text-sm font-bold text-white md:text-base">
                       {item}
                     </span>
@@ -337,13 +337,13 @@ function About() {
                 </FadeInItem>
               ))}
               <FadeInItem index={t.about.highlights.length} baseDelay={0} step={70}>
-                <div className="glass-card card-interactive flex min-h-[4.5rem] flex-col items-center justify-center rounded-xl border border-brand-accent/20 bg-brand-accent/5 px-3 py-3 text-center">
-                  <div className="font-display text-xl font-bold text-brand-accent md:text-2xl">
+                <div className="glass-card card-interactive flex h-24 flex-col items-center justify-center rounded-xl border border-brand-accent/20 bg-brand-accent/5 px-3 py-3 text-center sm:h-[6.25rem]">
+                  <span className="font-display text-sm font-bold text-brand-accent md:text-base">
                     {t.about.location.value}
-                  </div>
-                  <div className="mt-1 text-[10px] uppercase tracking-widest text-white/70">
+                  </span>
+                  <span className="mt-1 max-w-[8rem] text-[10px] leading-tight uppercase tracking-widest text-white/70">
                     {t.about.location.label}
-                  </div>
+                  </span>
                 </div>
               </FadeInItem>
             </div>
