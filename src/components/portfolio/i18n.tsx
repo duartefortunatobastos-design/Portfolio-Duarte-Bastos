@@ -2,6 +2,16 @@ import { createContext, useContext, useState, type ReactNode } from "react";
 
 export type Lang = "pt" | "en";
 
+/** Número com indicativo internacional, sem + nem espaços (ex: 351912345678). */
+export const WHATSAPP_PHONE = "351939743678";
+
+export const WHATSAPP_MESSAGE =
+  "Boas, tudo bem?\nVi o seu portfólio e gostaria de falar consigo.";
+
+export function getWhatsAppHref(phone = WHATSAPP_PHONE, message = WHATSAPP_MESSAGE) {
+  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+}
+
 type Dict = {
   nav: {
     about: string;
@@ -79,16 +89,8 @@ type Dict = {
     title1: string;
     title2: string;
     intro: string;
-    name: string;
-    email: string;
-    message: string;
-    send: string;
-    sending: string;
-    success: string;
-    fillAllFields: string;
-    invalidEmail: string;
     linksLabel: string;
-    social: { github: string; instagram: string };
+    social: { github: string; instagram: string; whatsapp: string };
   };
   footer: { name: string; rights: string; socialLabel: string };
   toggle: string;
@@ -238,19 +240,12 @@ const pt: Dict = {
     title1: "Entra em",
     title2: "contacto",
     intro:
-      "Queres falar sobre um projeto, colaboração ou oportunidade? Preenche o formulário ou contacta-me pelas redes.",
-    name: "O teu nome",
-    email: "O teu e-mail",
-    message: "A tua mensagem",
-    send: "Enviar Mensagem",
-    sending: "A enviar...",
-    success: "Mensagem enviada — respondo em breve.",
-    fillAllFields: "Preenche todos os campos antes de enviar.",
-    invalidEmail: "Introduz um email válido.",
+      "Queres falar sobre um projeto, colaboração ou oportunidade? Contacta-me pelas redes ou envia-me uma mensagem no WhatsApp.",
     linksLabel: "Links",
     social: {
       github: "https://github.com/duartefortunatobastos-design",
       instagram: "https://www.instagram.com/13.bastos/",
+      whatsapp: getWhatsAppHref(),
     },
   },
   footer: {
@@ -405,19 +400,12 @@ const en: Dict = {
     title1: "Get in",
     title2: "touch",
     intro:
-      "Want to talk about a project, collaboration, or opportunity? Fill out the form or reach me on social media.",
-    name: "Your name",
-    email: "Your email",
-    message: "Your message",
-    send: "Send Message",
-    sending: "Sending...",
-    success: "Message sent — I'll get back to you shortly.",
-    fillAllFields: "Please fill in all fields before sending.",
-    invalidEmail: "Please enter a valid email address.",
+      "Want to talk about a project, collaboration, or opportunity? Reach me on social media or send me a WhatsApp message.",
     linksLabel: "Links",
     social: {
       github: "https://github.com/duartefortunatobastos-design",
       instagram: "https://www.instagram.com/13.bastos/",
+      whatsapp: getWhatsAppHref(),
     },
   },
   footer: {
