@@ -77,17 +77,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Duarte Bastos - Desenvolvedor & Atleta" },
+      { title: "Duarte Bastos — Desenvolvedor Web | DB13" },
       {
         name: "description",
         content:
-          "Portfólio de Duarte Bastos — Desenvolvedor & Atleta. Projetos, competências, desporto e contacto.",
+          "Portfólio de Duarte Bastos — desenvolvedor web. Projetos, competências e contacto.",
       },
-      { property: "og:title", content: "Duarte Bastos - Desenvolvedor & Atleta" },
+      { property: "og:title", content: "Duarte Bastos — Desenvolvedor Web | DB13" },
       {
         property: "og:description",
         content:
-          "Developer and multi-sport athlete from Portugal. Portfolio, story, skills, and selected projects.",
+          "Web developer from Portugal. Portfolio, projects, skills, and contact.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
