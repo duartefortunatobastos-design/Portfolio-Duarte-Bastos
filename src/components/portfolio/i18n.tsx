@@ -14,43 +14,49 @@ export function getWhatsAppHref(phone = WHATSAPP_PHONE, message = WHATSAPP_MESSA
 
 type Dict = {
   nav: {
+    home: string;
     about: string;
-    story: string;
-    work: string;
+    projects: string;
     skills: string;
-    sports: string;
-    connect: string;
+    contact: string;
+    brand: string;
     menu: string;
     close: string;
   };
   hero: {
-    name: string;
-    tagline1: string;
-    tagline2: string;
-    desc1: string;
-    desc2: string;
+    kicker: string;
+    nameLine1: string;
+    nameLine2: string;
+    pitch: string;
     ctaProjects: string;
     ctaAbout: string;
-    scroll: string;
+    ctaContact: string;
+    focusAreas: { title: string; description: string }[];
   };
   about: {
     kicker: string;
     title1: string;
     title2: string;
     lead: string;
+    availableBadge: string;
+    roleDeveloper: string;
+    roleBrand: string;
+    stats: { value: string; label: string }[];
     blocks: { title: string; body: string }[];
     closing: string;
-    highlightsTitle: string;
-    highlights: string[];
-    location: { value: string; label: string };
+    experienceTitle: string;
+    experience: { year: string; title: string; body: string }[];
+    edgeTitle: string;
+    edgeIntro: string;
+    edgeItems: { title: string; detail: string }[];
     valuesTitle: string;
     values: string[];
   };
-  story: {
+  featured: {
     kicker: string;
     title1: string;
     title2: string;
-    items: { year: string; title: string; body: string }[];
+    viewAll: string;
   };
   projects: {
     kicker: string;
@@ -61,6 +67,7 @@ type Dict = {
     code: string;
     items: {
       title: string;
+      category: string;
       description: string;
       tech: string[];
       liveUrl: string;
@@ -71,29 +78,37 @@ type Dict = {
     kicker: string;
     title1: string;
     title2: string;
-    technicalTitle: string;
-    otherTitle: string;
-    learningLabel: string;
+    intro: string;
+    servicesTitle: string;
+    services: { title: string; description: string }[];
+    stackTitle: string;
     languagesLabel: string;
     tech: string[];
-    learning: string[];
-  };
-  sports: {
-    kicker: string;
-    title1: string;
-    title2: string;
-    intro: string;
-    categories: { sport: string; highlights: string[] }[];
+    growthTitle: string;
+    growth: string[];
   };
   contact: {
     kicker: string;
     title1: string;
     title2: string;
     intro: string;
-    linksLabel: string;
+    ctaTitle: string;
+    ctaSubtitle: string;
+    emailLabel: string;
+    whatsappLabel: string;
+    socialLabel: string;
     social: { github: string; instagram: string; whatsapp: string };
   };
-  footer: { name: string; rights: string; socialLabel: string };
+  footer: {
+    name: string;
+    tagline: string;
+    rights: string;
+    exploreTitle: string;
+    connectTitle: string;
+    legalTitle: string;
+    backToTop: string;
+    email: string;
+  };
   toggle: string;
   cookies: {
     title: string;
@@ -153,81 +168,103 @@ type Dict = {
 
 const pt: Dict = {
   nav: {
+    home: "Início",
     about: "Sobre",
-    story: "História",
-    work: "Projetos",
+    projects: "Projetos",
     skills: "Competências",
-    sports: "Desporto",
-    connect: "Contactos",
+    contact: "Contacto",
+    brand: "DB13",
     menu: "Menu",
     close: "Fechar",
   },
   hero: {
-    name: "Duarte Bastos",
-    tagline1: "Desenvolvedor & Atleta",
-    tagline2: "A Disciplina Constrói o Sucesso",
-    desc1: "Desenvolvedor em formação, apaixonado por software, redes e cibersegurança.",
-    desc2: "Atleta multidesportivo — Taekwondo, futebol e atletismo com foco e resiliência.",
-    ctaProjects: "Ver Projetos",
-    ctaAbout: "Sobre Mim",
-    scroll: "Role",
+    kicker: "Desenvolvedor web",
+    nameLine1: "Duarte",
+    nameLine2: "Bastos.",
+    pitch:
+      "Desenvolvo websites e aplicações funcionais para marcas, negócios e projetos pessoais — com estrutura clara, design moderno e código organizado.",
+    ctaProjects: "Ver projetos",
+    ctaAbout: "Sobre mim",
+    ctaContact: "Contactar",
+    focusAreas: [
+      { title: "Websites & Apps", description: "Portfólios, landing pages e plataformas responsivas." },
+      { title: "Backend & Dados", description: "PHP, MySQL e lógica de negócio para projetos reais." },
+      { title: "UI Limpa", description: "Interfaces focadas em clareza, usabilidade e conversão." },
+      { title: "Entrega Fiável", description: "Projetos académicos, pessoais e para clientes." },
+    ],
   },
   about: {
-    kicker: "Sobre Mim",
+    kicker: "Sobre",
     title1: "Quem",
-    title2: "sou eu",
-    lead: "Desenvolvedor em formação, com 18 anos, concluí o 12.º ano no Curso Profissional de Técnico de Gestão e Programação de Sistemas Informáticos. Desde cedo, tenho vindo a conciliar o interesse pela tecnologia com uma prática desportiva de elevada exigência competitiva.",
+    title2: "sou",
+    availableBadge: "Disponível para novos projetos",
+    roleDeveloper: "Web Developer",
+    roleBrand: "DB13",
+    lead: "Sou desenvolvedor web com formação em Técnico de Gestão e Programação de Sistemas Informáticos (TGPSI). Trabalho com PHP, JavaScript, bases de dados e interfaces modernas, com experiência em projetos académicos, portfólio próprio e website para cliente.",
+    stats: [
+      { value: "2+", label: "Projetos concluídos" },
+      { value: "1", label: "Projeto para cliente" },
+      { value: "6", label: "Linguagens & stacks" },
+      { value: "PT", label: "Baseado em Portugal" },
+    ],
     blocks: [
       {
-        title: "Desporto",
-        body: "Ao longo de mais de uma década de prática em Taekwondo e futebol, desenvolvi disciplina, foco e resiliência — competências que procuro aplicar de forma consistente também no desenvolvimento de software. Para além disso, participo em algumas provas de atletismo às vezes, para matar o gosto de correr, onde já obtive muito bons resultados.",
+        title: "O que faço",
+        body: "Crio presença online profissional: websites responsivos, painéis de gestão, integração com bases de dados e experiências bilingues (PT/EN) quando necessário.",
       },
       {
-        title: "Tecnologia",
-        body: "Paralelamente ao desporto, tenho uma grande paixão pela área da tecnologia e da programação. Interesso-me por áreas como programação, redes, cibersegurança e desenvolvimento de software. Ao longo do curso que tirei nos 3 anos de TGPSSI, adquiri conhecimentos em várias linguagens de programação.",
+        title: "Como trabalho",
+        body: "Priorizo organização, comunicação clara e entregas funcionais. Cada projeto é tratado com atenção ao detalhe — do layout à estrutura técnica.",
       },
     ],
     closing:
-      "Atualmente, procuro evoluir numa área que me motiva, com foco na procura de novos desafios profissionais.",
-    highlightsTitle: "Destaques",
-    highlights: ["18 anos", "Programador", "Atleta"],
-    location: { value: "PT", label: "Baseado em Portugal" },
-    valuesTitle: "Valores",
-    values: ["Disciplina", "Consistência", "Evolução"],
-  },
-  story: {
-    kicker: "A Minha História",
-    title1: "A minha",
-    title2: "jornada",
-    items: [
+      "Procuro novas oportunidades em desenvolvimento web, colaborações freelance e projetos onde possa crescer tecnicamente.",
+    experienceTitle: "Percurso",
+    experience: [
       {
-        year: "Dos 4 anos aos 9 anos",
-        title: "Taekwondo",
-        body: "Iniciei no Taekwondo — onde aprendi disciplina e a verdadeira competição, onde obtive os meus primeiros resultados a nível distrital e ibérico. Uma base que moldou a minha mentalidade.",
+        year: "2023–2026",
+        title: "TGPSI — Técnico de Gestão e Programação de Sistemas Informáticos",
+        body: "Formação profissional com foco em programação, bases de dados, redes e desenvolvimento de software.",
       },
       {
-        year: "Dos 9 anos ao 18 anos",
-        title: "Futebol",
-        body: "Passei pelo futebol, onde aprendi dedicação, espírito competitivo e trabalho de equipa.",
+        year: "2025",
+        title: "Projeto PAP — Site completo",
+        body: "Projeto de Aptidão Profissional com gestão de conteúdos, base de dados e interface responsiva.",
       },
       {
-        year: "TGPSSI",
-        title: "Técnico de Gestão e Programação de Sistemas Informáticos",
-        body: "Entrei no 10º ano no curso, com o objetivo de aprender uma área que sempre gostei — a área da informática, envolvendo tudo sobre este mundo e a área da programação. Aprendi PHP, JavaScript, Python, HTML, CSS e as bases da informática.",
+        year: "2025–2026",
+        title: "Projetos para cliente",
+        body: "Websites para diversas empresas, realizados com foco em presença online, usabilidade e entrega profissional.",
       },
     ],
+    edgeTitle: "Disciplina competitiva",
+    edgeIntro:
+      "Anos de desporto de competição reforçam foco, consistência e resiliência — qualidades que aplico também no trabalho técnico.",
+    edgeItems: [
+      { title: "Taekwondo", detail: "5× campeão distrital · 1º Dan" },
+      { title: "Futebol", detail: "Campeão distrital e torneios regionais" },
+    ],
+    valuesTitle: "Valores",
+    values: ["Disciplina", "Clareza", "Evolução"],
+  },
+  featured: {
+    kicker: "Trabalho em destaque",
+    title1: "Projetos",
+    title2: "selecionados",
+    viewAll: "Ver todos os projetos",
   },
   projects: {
-    kicker: "Projetos",
-    title1: "O que",
-    title2: "desenvolvi",
+    kicker: "Portefólio",
+    title1: "Todos os",
+    title2: "projetos",
     intro:
-      "Projetos reais — da PAP a soluções para clientes — com foco em funcionalidade, design e código limpo.",
+      "Seleção de trabalhos reais — da PAP a soluções para clientes — com foco em funcionalidade, design e código limpo.",
     viewProject: "Ver Projeto",
     code: "Código",
     items: [
       {
         title: "Site PAP",
+        category: "Académico",
         description:
           "Projeto de Aptidão Profissional do curso TGPSI. Website completo com gestão de conteúdos, base de dados e interface responsiva.",
         tech: ["PHP", "JavaScript", "HTML", "CSS", "MySQL"],
@@ -235,15 +272,8 @@ const pt: Dict = {
         codeUrl: "https://github.com/duartefortunatobastos-design/PAP-LONE-WOLF---DUARTE-BASTOS",
       },
       {
-        title: "Portfólio Duarte Bastos",
-        description:
-          "Portfólio pessoal, com secções de sobre mim, a minha história, projetos, skills e contacto, em PT e EN.",
-        tech: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-        liveUrl: "https://duartefortunatobastos-design.github.io/PORTFOLIO/",
-        codeUrl: "https://github.com/duartefortunatobastos-design/PORTFOLIO",
-      },
-      {
         title: "Projeto para ASAPOL",
+        category: "Cliente",
         description:
           "Website desenvolvido para Sindicato da Polícia de Segurança Pública, com foco em presença online, usabilidade, painel para os sócios e sistema de candidatura.",
         tech: ["PHP", "JavaScript", "HTML", "CSS", "MySQL"],
@@ -254,55 +284,34 @@ const pt: Dict = {
   },
   skills: {
     kicker: "Competências",
-    title1: "Capacidade",
-    title2: "técnica",
-    technicalTitle: "Técnicas",
-    otherTitle: "Outras",
-    learningLabel: "Gostaria de aprender:",
-    languagesLabel: "Linguagens",
-    tech: ["PHP", "JavaScript", "C++", "C#", "Python", "HTML & CSS"],
-    learning: ["Redes", "Cibersegurança"],
-  },
-  sports: {
-    kicker: "Desporto & Conquistas",
-    title1: "O meu",
-    title2: "diferencial",
+    title1: "Skills &",
+    title2: "serviços",
     intro:
-      "Mais do que código — anos de desporto a moldar disciplina, foco e vontade de competir. O que me distingue de outros perfis técnicos.",
-    categories: [
-      {
-        sport: "Taekwondo",
-        highlights: [
-          "5x campeão distrital",
-          "2x vice-campeão ibérico",
-          "1º Dan",
-        ],
-      },
-      {
-        sport: "Futebol",
-        highlights: [
-          "Campeão Distrital 2018/2019",
-          "Campeão Sesimbra Summer Cup 2018",
-          "Campeão Moçarria Cup 2023/2024",
-        ],
-      },
-      {
-        sport: "Atletismo",
-        highlights: [
-          "Campeão do Trofeu de Atletismo do Seixal",
-          "+10x - 1º lugar em provas no concelho",
-          "+10x - 1º lugar em Corta matos",
-        ],
-      },
+      "Áreas em que posso ajudar, tecnologias que utilizo e competências que estou a desenvolver.",
+    servicesTitle: "Serviços",
+    services: [
+      { title: "Websites Profissionais", description: "Sites institucionais, portfólios e landing pages." },
+      { title: "Aplicações Web", description: "Painéis, formulários, áreas de membros e gestão de dados." },
+      { title: "UI & Responsividade", description: "Layouts modernos adaptados a desktop e mobile." },
+      { title: "Suporte & Evolução", description: "Melhorias, correções e novas funcionalidades." },
     ],
+    stackTitle: "Stack técnica",
+    languagesLabel: "Linguagens & ferramentas",
+    tech: ["PHP", "JavaScript", "TypeScript", "React", "HTML & CSS", "MySQL", "Python", "Tailwind CSS"],
+    growthTitle: "Em desenvolvimento",
+    growth: ["Redes", "Cibersegurança", "DevOps"],
   },
   contact: {
-    kicker: "Contactos",
-    title1: "Entra em",
-    title2: "contacto",
+    kicker: "Contacto",
+    title1: "Vamos",
+    title2: "conversar",
     intro:
-      "Queres falar sobre um projeto, colaboração ou oportunidade? Contacta-me pelas redes ou envia-me uma mensagem no WhatsApp.",
-    linksLabel: "Links",
+      "Tens um projeto, ideia ou oportunidade? Envia-me uma mensagem — respondo o mais breve possível.",
+    ctaTitle: "Pronto para o teu próximo projeto?",
+    ctaSubtitle: "Fala comigo por email ou WhatsApp. Orçamentos e colaborações são bem-vindos.",
+    emailLabel: "Email",
+    whatsappLabel: "WhatsApp",
+    socialLabel: "Redes",
     social: {
       github: "https://github.com/duartefortunatobastos-design",
       instagram: "https://www.instagram.com/13.bastos/",
@@ -311,8 +320,14 @@ const pt: Dict = {
   },
   footer: {
     name: "Duarte Bastos",
+    tagline:
+      "Portfólio pessoal da DB13 — websites modernos, projetos reais e uma abordagem disciplinada ao desenvolvimento.",
     rights: "Todos os direitos reservados.",
-    socialLabel: "Redes sociais",
+    exploreTitle: "Explorar",
+    connectTitle: "Contactos",
+    legalTitle: "Legal",
+    backToTop: "Voltar ao topo",
+    email: "duartefortunatobastos@gmail.com",
   },
   toggle: "EN",
   cookies: {
@@ -345,7 +360,7 @@ const pt: Dict = {
         {
           title: "1. Quem somos",
           bodyBeforeEmail:
-            "Este portfólio é operado por Duarte Bastos (DB13 Website Desenvoloper / DB13 Server Solutions). É um website estático de apresentação pessoal, em português e inglês. Pode contactar-nos através do e-mail ",
+            "Este portfólio é operado por Duarte Bastos (DB13 Website Desenvoloper). É um website estático de apresentação pessoal, em português e inglês. Pode contactar-nos através do e-mail ",
           bodyAfterEmail: ".",
         },
         {
@@ -435,81 +450,103 @@ const pt: Dict = {
 
 const en: Dict = {
   nav: {
+    home: "Home",
     about: "About",
-    story: "Story",
-    work: "Work",
+    projects: "Projects",
     skills: "Skills",
-    sports: "Sports",
-    connect: "Connect",
+    contact: "Contact",
+    brand: "DB13",
     menu: "Menu",
     close: "Close",
   },
   hero: {
-    name: "Duarte Bastos",
-    tagline1: "Developer & Athlete",
-    tagline2: "Discipline Builds Success",
-    desc1: "Developer in training with a passion for software, networking, and cybersecurity.",
-    desc2: "Multi-sport athlete — taekwondo, football, and athletics with focus and resilience.",
-    ctaProjects: "View Projects",
-    ctaAbout: "About Me",
-    scroll: "Scroll",
+    kicker: "Web developer",
+    nameLine1: "Duarte",
+    nameLine2: "Bastos.",
+    pitch:
+      "I build functional websites and applications for brands, businesses, and personal projects — with clear structure, modern design, and organized code.",
+    ctaProjects: "View projects",
+    ctaAbout: "About me",
+    ctaContact: "Contact",
+    focusAreas: [
+      { title: "Websites & Apps", description: "Portfolios, landing pages, and responsive platforms." },
+      { title: "Backend & Data", description: "PHP, MySQL, and business logic for real projects." },
+      { title: "Clean UI", description: "Interfaces focused on clarity, usability, and conversion." },
+      { title: "Reliable Delivery", description: "Academic, personal, and client-facing work." },
+    ],
   },
   about: {
-    kicker: "About Me",
+    kicker: "About",
     title1: "Who",
     title2: "I am",
-    lead: "I am a developer in training, aged 18, and I have completed the 12th grade in the Professional Course in IT Systems Management and Programming. From an early age, I have sought to combine an interest in technology with a demanding competitive sports background.",
+    availableBadge: "Available for new projects",
+    roleDeveloper: "Web Developer",
+    roleBrand: "DB13",
+    lead: "I am a web developer trained in IT Systems Management and Programming (TGPSI). I work with PHP, JavaScript, databases, and modern interfaces, with experience in academic projects, my own portfolio, and a client website.",
+    stats: [
+      { value: "2+", label: "Completed projects" },
+      { value: "1", label: "Client project" },
+      { value: "6", label: "Languages & stacks" },
+      { value: "PT", label: "Based in Portugal" },
+    ],
     blocks: [
       {
-        title: "Sport",
-        body: "Over more than a decade of practice in taekwondo and football, I have developed discipline, focus, and resilience — competencies I aim to apply consistently in software development as well. I also take part in athletics events from time to time, to satisfy my urge to run, and have already achieved strong results.",
+        title: "What I do",
+        body: "I create professional online presence: responsive websites, management panels, database integration, and bilingual experiences (PT/EN) when needed.",
       },
       {
-        title: "Technology",
-        body: "Alongside sport, I have a strong passion for technology and programming. I am interested in areas such as programming, networking, cybersecurity, and software development. Over the three-year TGPSSI course I completed, I gained knowledge in several programming languages.",
+        title: "How I work",
+        body: "I prioritize organization, clear communication, and functional delivery. Every project gets attention to detail — from layout to technical structure.",
       },
     ],
     closing:
-      "At present, I seek to grow in a field that motivates me, with a focus on new professional challenges.",
-    highlightsTitle: "Highlights",
-    highlights: ["18 years old", "Developer", "Athlete"],
-    location: { value: "PT", label: "Based in Portugal" },
-    valuesTitle: "Values",
-    values: ["Discipline", "Consistency", "Growth"],
-  },
-  story: {
-    kicker: "My Story",
-    title1: "My",
-    title2: "journey",
-    items: [
+      "I am looking for new opportunities in web development, freelance collaborations, and projects where I can grow technically.",
+    experienceTitle: "Background",
+    experience: [
       {
-        year: "From age 4 to 9",
-        title: "Taekwondo",
-        body: "I began Taekwondo — where I learned discipline and true competition, and earned my first district and Iberian results. A foundation that shaped my mindset.",
+        year: "2023–2026",
+        title: "TGPSI — IT Systems Management and Programming",
+        body: "Professional training focused on programming, databases, networking, and software development.",
       },
       {
-        year: "From age 9 to 18",
-        title: "Football",
-        body: "I went through football, where I learned dedication, a competitive spirit, and teamwork.",
+        year: "2025",
+        title: "PAP Project — Full website",
+        body: "Professional Aptitude Project with content management, database, and responsive interface.",
       },
       {
-        year: "TGPSSI",
-        title: "Professional Course in IT Systems Management and Programming",
-        body: "I entered the course in 10th grade with the goal of learning a field I've always loved — IT, covering everything about this world and programming. I learned PHP, JavaScript, Python, HTML, CSS, and the fundamentals of computing.",
+        year: "2025–2026",
+        title: "Client projects",
+        body: "Websites for various businesses, delivered with a focus on online presence, usability, and professional results.",
       },
     ],
+    edgeTitle: "Competitive discipline",
+    edgeIntro:
+      "Years of competitive sport reinforce focus, consistency, and resilience — qualities I also apply in technical work.",
+    edgeItems: [
+      { title: "Taekwondo", detail: "5× district champion · 1st Dan" },
+      { title: "Football", detail: "District champion and regional tournaments" },
+    ],
+    valuesTitle: "Values",
+    values: ["Discipline", "Clarity", "Growth"],
+  },
+  featured: {
+    kicker: "Featured work",
+    title1: "Selected",
+    title2: "projects",
+    viewAll: "View all projects",
   },
   projects: {
-    kicker: "Projects",
-    title1: "What I've",
-    title2: "built",
+    kicker: "Portfolio",
+    title1: "All",
+    title2: "projects",
     intro:
-      "Real projects — from my PAP to client work — focused on functionality, design, and clean code.",
+      "A selection of real work — from my PAP to client solutions — focused on functionality, design, and clean code.",
     viewProject: "View Project",
     code: "Code",
     items: [
       {
         title: "PAP Website",
+        category: "Academic",
         description:
           "Professional Aptitude Project for my TGPSI course. Full website with content management, database, and responsive UI.",
         tech: ["PHP", "JavaScript", "HTML", "CSS", "MySQL"],
@@ -517,15 +554,8 @@ const en: Dict = {
         codeUrl: "https://github.com/duartefortunatobastos-design/PAP-LONE-WOLF---DUARTE-BASTOS",
       },
       {
-        title: "Duarte Bastos Portfolio",
-        description:
-          "Personal portfolio with about me, my story, projects, skills, and contact sections, in PT and EN.",
-        tech: ["React", "TypeScript", "Tailwind CSS", "Vite"],
-        liveUrl: "https://duartefortunatobastos-design.github.io/PORTFOLIO/",
-        codeUrl: "https://github.com/duartefortunatobastos-design/PORTFOLIO",
-      },
-      {
         title: "ASAPOL Project",
+        category: "Client",
         description:
           "Website built for the Public Security Police union, focused on online presence, usability, a member area, and an application system.",
         tech: ["PHP", "JavaScript", "HTML", "CSS", "MySQL"],
@@ -536,55 +566,34 @@ const en: Dict = {
   },
   skills: {
     kicker: "Skills",
-    title1: "Technical",
-    title2: "ability",
-    technicalTitle: "Technical",
-    otherTitle: "Other",
-    learningLabel: "I'd like to learn:",
-    languagesLabel: "Languages",
-    tech: ["PHP", "JavaScript", "C++", "C#", "Python", "HTML & CSS"],
-    learning: ["Networking", "Cybersecurity"],
-  },
-  sports: {
-    kicker: "Sports & Achievements",
-    title1: "My",
-    title2: "edge",
+    title1: "Skills &",
+    title2: "services",
     intro:
-      "More than code — years of sport shaping discipline, focus, and a drive to compete. What sets me apart from other technical profiles.",
-    categories: [
-      {
-        sport: "Taekwondo",
-        highlights: [
-          "5x district champion",
-          "2x Iberian vice-champion",
-          "1st Dan",
-        ],
-      },
-      {
-        sport: "Football",
-        highlights: [
-          "District Champion 2018/2019",
-          "Sesimbra Summer Cup Champion 2018",
-          "Moçarria Cup Champion 2023/2024",
-        ],
-      },
-      {
-        sport: "Athletics",
-        highlights: [
-          "Seixal Athletics Trophy Champion",
-          "+10x - 1st-place finishes in municipal events",
-          "+10x - 1st-place finishes in Corta Matos",
-        ],
-      },
+      "Areas where I can help, technologies I use, and skills I am actively developing.",
+    servicesTitle: "Services",
+    services: [
+      { title: "Professional Websites", description: "Institutional sites, portfolios, and landing pages." },
+      { title: "Web Applications", description: "Panels, forms, member areas, and data management." },
+      { title: "UI & Responsiveness", description: "Modern layouts for desktop and mobile." },
+      { title: "Support & Growth", description: "Improvements, fixes, and new features." },
     ],
+    stackTitle: "Technical stack",
+    languagesLabel: "Languages & tools",
+    tech: ["PHP", "JavaScript", "TypeScript", "React", "HTML & CSS", "MySQL", "Python", "Tailwind CSS"],
+    growthTitle: "Growing in",
+    growth: ["Networking", "Cybersecurity", "DevOps"],
   },
   contact: {
     kicker: "Contact",
-    title1: "Get in",
-    title2: "touch",
+    title1: "Let's",
+    title2: "talk",
     intro:
-      "Want to talk about a project, collaboration, or opportunity? Reach me on social media or send me a WhatsApp message.",
-    linksLabel: "Links",
+      "Have a project, idea, or opportunity? Send me a message — I reply as soon as possible.",
+    ctaTitle: "Ready for your next project?",
+    ctaSubtitle: "Reach me by email or WhatsApp. Quotes and collaborations welcome.",
+    emailLabel: "Email",
+    whatsappLabel: "WhatsApp",
+    socialLabel: "Social",
     social: {
       github: "https://github.com/duartefortunatobastos-design",
       instagram: "https://www.instagram.com/13.bastos/",
@@ -593,8 +602,14 @@ const en: Dict = {
   },
   footer: {
     name: "Duarte Bastos",
+    tagline:
+      "Personal portfolio by DB13 — modern websites, real projects, and a disciplined approach to development.",
     rights: "All rights reserved.",
-    socialLabel: "Social media",
+    exploreTitle: "Explore",
+    connectTitle: "Connect",
+    legalTitle: "Legal",
+    backToTop: "Back to top",
+    email: "duartefortunatobastos@gmail.com",
   },
   toggle: "PT",
   cookies: {
@@ -626,7 +641,7 @@ const en: Dict = {
         {
           title: "1. Who we are",
           bodyBeforeEmail:
-            "This portfolio is operated by Duarte Bastos (DB13 Website Developer / DB13 Server Solutions). It is a static personal showcase website in Portuguese and English. You can contact us at ",
+            "This portfolio is operated by Duarte Bastos (DB13 Website Developer). It is a static personal showcase website in Portuguese and English. You can contact us at ",
           bodyAfterEmail: ".",
         },
         {

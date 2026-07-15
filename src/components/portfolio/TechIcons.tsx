@@ -104,6 +104,74 @@ export function HtmlCssIcon({ className = "size-5" }: TechIconProps) {
   );
 }
 
+export function TypeScriptIcon({ className = "size-5" }: TechIconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <rect x="3" y="3" width="18" height="18" rx="2" fill="#3178C6" />
+      <text
+        x="12"
+        y="15.5"
+        textAnchor="middle"
+        fill="white"
+        fontSize="7.5"
+        fontWeight="700"
+        fontFamily="Arial,sans-serif"
+      >
+        TS
+      </text>
+    </svg>
+  );
+}
+
+export function ReactIcon({ className = "size-5" }: TechIconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="none">
+      <circle cx="12" cy="12" r="2.2" fill="#61DAFB" />
+      <ellipse cx="12" cy="12" rx="9" ry="3.4" stroke="#61DAFB" strokeWidth="1.4" />
+      <ellipse
+        cx="12"
+        cy="12"
+        rx="9"
+        ry="3.4"
+        stroke="#61DAFB"
+        strokeWidth="1.4"
+        transform="rotate(60 12 12)"
+      />
+      <ellipse
+        cx="12"
+        cy="12"
+        rx="9"
+        ry="3.4"
+        stroke="#61DAFB"
+        strokeWidth="1.4"
+        transform="rotate(-60 12 12)"
+      />
+    </svg>
+  );
+}
+
+export function MySqlIcon({ className = "size-5" }: TechIconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <ellipse cx="12" cy="7" rx="7" ry="2.5" fill="#00758F" />
+      <path d="M5 7v8c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V7" fill="#00758F" />
+      <ellipse cx="12" cy="15" rx="7" ry="2.5" fill="#005C73" />
+      <ellipse cx="12" cy="11" rx="7" ry="2" fill="none" stroke="#F29111" strokeWidth="0.9" />
+    </svg>
+  );
+}
+
+export function TailwindIcon({ className = "size-5" }: TechIconProps) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" fill="none">
+      <path
+        d="M11 5.5c-3.6 0-5.6 1.8-6.6 3.6-.9 1.6-1.8 2.4-4.1 2.4 3.6 0 5.6-1.8 6.6-3.6.9-1.6 1.8-2.4 4.1-2.4zm0 6.5c-3.6 0-5.6 1.8-6.6 3.6-.9 1.6-1.8 2.4-4.1 2.4 3.6 0 5.6-1.8 6.6-3.6.9-1.6 1.8-2.4 4.1-2.4zm9.5-6.5c-3.6 0-5.6 1.8-6.6 3.6-.9 1.6-1.8 2.4-4.1 2.4 3.6 0 5.6-1.8 6.6-3.6.9-1.6 1.8-2.4 4.1-2.4z"
+        fill="#38BDF8"
+      />
+    </svg>
+  );
+}
+
 const TECH_ICON_MAP: Record<string, ComponentType<TechIconProps>> = {
   PHP: PhpIcon,
   JavaScript: JavaScriptIcon,
@@ -111,6 +179,10 @@ const TECH_ICON_MAP: Record<string, ComponentType<TechIconProps>> = {
   "C#": CSharpIcon,
   Python: PythonIcon,
   "HTML & CSS": HtmlCssIcon,
+  TypeScript: TypeScriptIcon,
+  React: ReactIcon,
+  MySQL: MySqlIcon,
+  "Tailwind CSS": TailwindIcon,
 };
 
 export function TechLanguageIcon({ name }: { name: string }) {
