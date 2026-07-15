@@ -1,17 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { getCookieConsent, setCookieConsent } from "@/lib/cookie-consent";
 import { useLang } from "@/components/portfolio/i18n";
 
 const BANNER_BODY_PADDING = "calc(11.5rem + env(safe-area-inset-bottom, 0px))";
 
 export function CookieConsent() {
   const { t } = useLang();
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    setVisible(getCookieConsent() === null);
-  }, []);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     if (!visible) return;
@@ -25,11 +20,6 @@ export function CookieConsent() {
   }, [visible]);
 
   if (!visible) return null;
-
-  function hide(status: "accepted" | "dismissed") {
-    setCookieConsent(status);
-    setVisible(false);
-  }
 
   return (
     <div
@@ -59,14 +49,14 @@ export function CookieConsent() {
         <div className="flex shrink-0 flex-wrap items-center gap-3 sm:justify-end">
           <button
             type="button"
-            onClick={() => hide("dismissed")}
+            onClick={() => setVisible(false)}
             className="inline-flex min-h-11 items-center justify-center rounded-full border border-white/25 bg-transparent px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:border-white/45 hover:bg-white/5"
           >
             {t.cookies.close}
           </button>
           <button
             type="button"
-            onClick={() => hide("accepted")}
+            onClick={() => setVisible(false)}
             className="inline-flex min-h-11 items-center justify-center rounded-full bg-white px-6 py-2.5 text-sm font-semibold text-brand-bg transition-colors hover:bg-white/90"
           >
             {t.cookies.accept}

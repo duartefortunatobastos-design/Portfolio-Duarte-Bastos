@@ -318,7 +318,7 @@ const pt: Dict = {
   cookies: {
     title: "Privacidade e cookies",
     descriptionBefore:
-      "Este website utiliza apenas armazenamento local essencial para memorizar a tua escolha no aviso de cookies. Consulta a",
+      "Sempre que entras ou atualizas o site, mostramos esta informação sobre privacidade e cookies. Consulta a",
     descriptionMiddle: "e a",
     privacyLink: "Política de Privacidade",
     cookieLink: "Política de Cookies",
@@ -350,12 +350,7 @@ const pt: Dict = {
         },
         {
           title: "2. Dados que o website trata diretamente",
-          intro:
-            "O código deste website não recolhe formulários, não utiliza ferramentas de analytics e não cria perfis de visitantes. Apenas guarda no seu navegador:",
-          bullets: [
-            "A preferência de consentimento de cookies (`portfolio-cookie-consent`), com o valor «aceitar» ou «fechar», para não voltar a mostrar o aviso de cookies.",
-          ],
-          body: "A escolha de idioma (PT/EN) existe apenas durante a sessão de navegação e não é guardada automaticamente quando fecha o separador.",
+          body: "O código deste website não recolhe formulários, não utiliza ferramentas de analytics, não cria perfis de visitantes e não guarda cookies nem armazenamento local no seu navegador. A escolha de idioma (PT/EN) existe apenas durante a sessão de navegação e não é guardada automaticamente quando fecha o separador.",
         },
         {
           title: "3. Alojamento e registos técnicos",
@@ -368,8 +363,9 @@ const pt: Dict = {
         {
           title: "5. Cookies e armazenamento local",
           cookiePolicyBefore:
-            "Este website não define cookies HTTP próprios. Utiliza apenas armazenamento local estritamente necessário para memorizar a sua escolha no aviso de cookies. Consulte a ",
-          cookiePolicyAfter: " para mais detalhes.",
+            "Este website não define cookies HTTP próprios nem utiliza armazenamento local. Mostramos um aviso informativo com links para esta página e para a ",
+          cookiePolicyAfter:
+            " sempre que abre ou atualiza o site.",
         },
         {
           title: "6. Ligações para sites externos",
@@ -410,11 +406,7 @@ const pt: Dict = {
         },
         {
           title: "2. O que este website utiliza",
-          intro: "Neste portfólio, o armazenamento local é mínimo e limita-se a:",
-          bullets: [
-            "Preferência de consentimento de cookies (`portfolio-cookie-consent`) — memoriza se aceitou ou fechou o aviso de privacidade/cookies, para não o mostrar novamente.",
-          ],
-          body: "Este website não define cookies HTTP próprios no código atual.",
+          body: "Este website não define cookies HTTP próprios nem guarda informação no armazenamento local do navegador. Mostramos um aviso informativo com links para a Política de Privacidade e para esta página sempre que o site é aberto ou atualizado. Os botões «Aceitar» e «Fechar» apenas ocultam o aviso durante essa visita.",
         },
         {
           title: "3. O que este website não utiliza",
@@ -426,7 +418,7 @@ const pt: Dict = {
         },
         {
           title: "5. Como controlar o armazenamento",
-          body: "Pode apagar o armazenamento local a qualquer momento nas definições do navegador. Se o remover, o aviso de cookies voltará a aparecer na próxima visita. Também pode bloquear o armazenamento local, mas o aviso de cookies poderá voltar a ser mostrado em cada visita.",
+          body: "Como este portfólio não utiliza cookies próprios nem armazenamento local, não há preferências guardadas no navegador para apagar. Se no futuro forem adicionadas ferramentas que utilizem cookies, esta política será atualizada.",
         },
         {
           title: "6. Contacto",
@@ -608,7 +600,7 @@ const en: Dict = {
   cookies: {
     title: "Privacy & cookies",
     descriptionBefore:
-      "This website only uses essential local storage to remember your cookie notice choice. Read the",
+      "Whenever you open or refresh the site, we show this privacy and cookies notice. Read the",
     descriptionMiddle: "and",
     privacyLink: "Privacy Policy",
     cookieLink: "Cookie Policy",
@@ -639,12 +631,7 @@ const en: Dict = {
         },
         {
           title: "2. Data this website handles directly",
-          intro:
-            "This website's code does not collect forms, does not use analytics tools, and does not build visitor profiles. It only stores in your browser:",
-          bullets: [
-            "Your cookie consent preference (`portfolio-cookie-consent`), with the value \"accept\" or \"close\", so the cookie notice is not shown again.",
-          ],
-          body: "The language choice (PT/EN) exists only during your browsing session and is not saved automatically when you close the tab.",
+          body: "This website's code does not collect forms, does not use analytics tools, does not build visitor profiles, and does not store cookies or local storage in your browser. The language choice (PT/EN) exists only during your browsing session and is not saved automatically when you close the tab.",
         },
         {
           title: "3. Hosting and technical logs",
@@ -657,8 +644,8 @@ const en: Dict = {
         {
           title: "5. Cookies and local storage",
           cookiePolicyBefore:
-            "This website does not set its own HTTP cookies. It only uses strictly necessary local storage to remember your cookie notice choice. See our ",
-          cookiePolicyAfter: " for more details.",
+            "This website does not set its own HTTP cookies or use local storage. We show an informational notice with links to this page and our ",
+          cookiePolicyAfter: " whenever you open or refresh the site.",
         },
         {
           title: "6. External links",
@@ -698,11 +685,7 @@ const en: Dict = {
         },
         {
           title: "2. What this website uses",
-          intro: "On this portfolio, local storage is minimal and limited to:",
-          bullets: [
-            "Cookie consent preference (`portfolio-cookie-consent`) — remembers whether you accepted or closed the privacy/cookie notice so it is not shown again.",
-          ],
-          body: "This website does not set its own HTTP cookies in the current code.",
+          body: "This website does not set its own HTTP cookies or store information in your browser's local storage. We show an informational notice with links to the Privacy Policy and this page whenever the site is opened or refreshed. The Accept and Close buttons only hide the notice for that visit.",
         },
         {
           title: "3. What this website does not use",
@@ -714,7 +697,7 @@ const en: Dict = {
         },
         {
           title: "5. How to control storage",
-          body: "You can delete local storage at any time in your browser settings. If you remove it, the cookie notice will appear again on your next visit. You can also block local storage, but the cookie notice may be shown on every visit.",
+          body: "Because this portfolio does not use its own cookies or local storage, there are no saved browser preferences to delete. If cookie-based tools are added in the future, this policy will be updated.",
         },
         {
           title: "6. Contact",
