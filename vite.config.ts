@@ -9,7 +9,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 const isGitHubPages = process.env.GITHUB_PAGES === "true";
 // GitHub project site base path.
 const githubPagesBase =
-  process.env.GITHUB_PAGES_BASE ?? "/Portfolio-Duarte-Bastos/";
+  process.env.GITHUB_PAGES_BASE ?? "/PORTFOLIO/";
 
 export default defineConfig({
   vite: {

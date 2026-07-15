@@ -34,7 +34,7 @@ jobs:
       - name: Build static site for GitHub Pages
         env:
           GITHUB_PAGES: "true"
-          GITHUB_PAGES_BASE: "/Portfolio-Duarte-Bastos/"
+          GITHUB_PAGES_BASE: "/PORTFOLIO/"
         run: npm run build
 
       - name: Prepare GitHub Pages output
